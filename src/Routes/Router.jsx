@@ -8,6 +8,7 @@ import Register from "../Pages/Register";
 import Profile from "../Pages/Profile";
 import BillDetails from "../Pages/BillDetails";
 import MyBills from "../Pages/MyBills";
+import PrivateRoutes from "./PrivateRoutes";
 
 const Router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const Router = createBrowserRouter([
 
       { path: "/bills", element: <Bills /> },
 
-      { path: "/bills/:id", element: <BillDetails /> },
+      { path: "/bills/:id", element: <PrivateRoutes> <BillDetails /> </PrivateRoutes> },
 
       { path: "/login", element: <Login /> },
 
@@ -30,6 +31,7 @@ const Router = createBrowserRouter([
       { path: "/profile", element: <Profile /> },
 
       {  path: "/mybills", element: <MyBills /> },
+
     ],
   },
 ]);
