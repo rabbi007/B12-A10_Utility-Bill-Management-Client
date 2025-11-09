@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 
 import MainLayouts from "../Layouts/MainLayouts";
 import Home from "../Pages/Home";
-
+import Bills from "../Pages/Bills";
 
 const Router = createBrowserRouter([
   {
@@ -17,9 +17,13 @@ const Router = createBrowserRouter([
 
       {
         path: "/home",
-        element: <Home />
+        element: <Home />,
       },
 
+      {
+        path: "/bills",
+        element: <Bills/>,
+      },
     ],
   },
 ]);
