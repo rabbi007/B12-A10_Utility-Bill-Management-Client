@@ -6,7 +6,8 @@ import Bills from "../Pages/Bills";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Profile from "../Pages/Profile";
-// import BillDetails from "../Pages/BillDetails";
+import BillDetails from "../Pages/BillDetails";
+import MyBills from "../Pages/MyBills";
 
 const Router = createBrowserRouter([
   {
@@ -20,13 +21,15 @@ const Router = createBrowserRouter([
 
       { path: "/bills", element: <Bills /> },
 
-      // { path: "/bills/:id", element: <BillDetails /> },
+      { path: "/bills/:id", element: <BillDetails /> },
 
       { path: "/login", element: <Login /> },
 
       { path: "/register", element: <Register /> },
 
       { path: "/profile", element: <Profile /> },
+
+      {  path: "/mybills", element: <MyBills /> },
     ],
   },
 ]);
