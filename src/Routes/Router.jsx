@@ -3,9 +3,9 @@ import { createBrowserRouter } from "react-router";
 import MainLayouts from "../Layouts/MainLayouts";
 import Home from "../Pages/Home";
 import Bills from "../Pages/Bills";
-// import Login from "../Pages/Login";
+import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-// import Profile from "../Pages/Profile";
+import Profile from "../Pages/Profile";
 // import BillDetails from "../Pages/BillDetails";
 
 const Router = createBrowserRouter([
@@ -22,11 +22,11 @@ const Router = createBrowserRouter([
 
       // { path: "/bills/:id", element: <BillDetails /> },
 
-      // { path: "/login", element: <Login /> },
+      { path: "/login", element: <Login /> },
 
       { path: "/register", element: <Register /> },
 
-      // { path: "/profile", element: <Profile /> },
+      { path: "/profile", element: <Profile /> },
     ],
   },
 ]);
