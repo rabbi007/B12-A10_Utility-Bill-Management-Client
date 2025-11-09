@@ -9,6 +9,7 @@ import Profile from "../Pages/Profile";
 import BillDetails from "../Pages/BillDetails";
 import MyBills from "../Pages/MyBills";
 import PrivateRoutes from "./PrivateRoutes";
+import Error from "../Pages/Error";
 
 const Router = createBrowserRouter([
   {
