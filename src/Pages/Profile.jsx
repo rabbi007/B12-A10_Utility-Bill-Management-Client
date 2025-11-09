@@ -201,11 +201,6 @@ const Profile = () => {
               </button>
             </form>
 
-            <div className="mt-6 text-sm text-base-content/70">
-              Tip: Need to change password or email? Use Firebase’s account settings flow,
-              or add a dedicated “Security” page later.
-            </div>
-
             <div className="mt-4">
               <Link to="/" className="link link-primary">← Back to Home</Link>
             </div>
