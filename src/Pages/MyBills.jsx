@@ -82,7 +82,7 @@ const MyBills = () => {
         toast.error("Delete failed!");
       }
     } catch (err) {
-      toast.error("Error deleting bill.");
+      toast.error("Error deleting bill.", err);
     }
   };
 
@@ -117,7 +117,7 @@ const MyBills = () => {
         fetchMyBills();
       } else toast.error("Update failed!");
     } catch (err) {
-      toast.error("Error updating bill.");
+      toast.error("Error updating bill", err);
     }
   };
 
