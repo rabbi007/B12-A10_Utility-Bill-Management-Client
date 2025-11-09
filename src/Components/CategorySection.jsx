@@ -111,7 +111,7 @@ const CategorySection = () => {
       </div>
 
       {/* Google color underline */}
-      <div className="h-1.5 w-full flex mt-8">
+      <div className="h-1.5 w-full flex mt-20">
         <span className="flex-1 bg-[#4285f4]" />
         <span className="flex-1 bg-[#34a853]" />
         <span className="flex-1 bg-[#fbbc05]" />
