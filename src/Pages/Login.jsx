@@ -8,15 +8,15 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../Firebase/Firebase";
 
 const Login = () => {
-    // auto scroll to top of this page
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-  
+  // auto scroll to top of this page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = location.state?.from || "/";
-
+  const [email, setEmail] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -54,7 +54,9 @@ const Login = () => {
       toast.success("Google login successful!", { position: "top-center" });
       navigate(redirectTo, { replace: true });
     } catch (err) {
-      toast.error(err?.message || "Google login failed", { position: "top-center" });
+      toast.error(err?.message || "Google login failed", {
+        position: "top-center",
+      });
     } finally {
       setLoading(false);
     }
@@ -65,9 +67,7 @@ const Login = () => {
       className="mt-24
         min-h-screen flex items-center justify-center
         px-4 py-10 relative overflow-hidden
-        bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9]
-        dark:from-[#0b1220] dark:via-[#0f1526] dark:to-[#0b1220]
-      "
+        bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9]"
     >
       {/* decorative blobs */}
       <div className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-30 bg-[#34a853]" />
@@ -123,20 +123,23 @@ const Login = () => {
                 "
                 placeholder="user@example.com"
                 required
+                onChange={(e) => setEmail(e.target.value)}
                 aria-label="Email address"
                 autoComplete="email"
               />
             </div>
 
             <div className="form-control">
-              <label className="label flex justify-between">
+              <label className="label flex justify-between items-center">
                 <span className="label-text font-medium">Password</span>
-                <Link
-                  to="/login"
-                  className="label-text-alt link link-hover text-primary"
-                >
-                  Forgot password?
-                </Link>
+                <span className="text-center mb-4">
+                  <a
+                    href={`/forgetPassword?email=${email}`}
+                    className="text-sm text-blue-500 hover:underline"
+                  >
+                    Forgot Password?
+                  </a>
+                </span>
               </label>
               <div className="relative">
                 <input

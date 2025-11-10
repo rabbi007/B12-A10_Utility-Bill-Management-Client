@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext/AuthContext";
 import logo from "../assets/logo.svg";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
   const { currentUser, signOutUser } = useContext(AuthContext);
+
   const [open, setOpen] = useState(false);
 
   const closeMenu = () => setOpen(false);
@@ -13,10 +15,19 @@ const NavBar = () => {
     try {
       await signOutUser();
       closeMenu();
+      toast.success("Successfully logged out.")
     } catch (err) {
       console.error("Logout failed:", err);
+      toast.error("Failed to log out. Try again.")
     }
   };
+
+
+  // const handleLogout = () => {
+  //   signOutUser()
+  //     .then(() => toast.success("Successfully logged out."))
+  //     .catch(() => toast.error("Failed to log out. Try again."));
+  // };
 
   const baseLink =
     "px-3 py-2 rounded-md font-medium transition-all hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-2";

@@ -9,6 +9,10 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
+import bkash from "/BKash.svg"
+import nagad from "/Nagad.svg"
+import rocket from "/rocket.png"
+
 const Footer = () => {
   const year = new Date().getFullYear();
 
@@ -17,7 +21,6 @@ const Footer = () => {
       className=" bg-gray-50 text-base-content/90"
       aria-label="Website footer"
     >
-
       {/* Google color underline */}
       <div className="h-1.5 w-full flex mt-10">
         <span className="flex-1 bg-[#4285f4]" />
@@ -224,8 +227,65 @@ const Footer = () => {
           </div>
         </div>
 
+        <div>
+          <div className="flex justify-center items-center mt-10 gap-5">
+            <p className="text-lg font-semibold">
+              Online Payment Partners &nbsp; 👉
+            </p>
+            <ul className="flex gap-8 mt-4 justify-center">
+              {/* Bkash */}
+              <li>
+                <a
+                  href="https://www.bkash.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Bkash"
+                >
+                  <img
+                    src={bkash}
+                    alt="Bkash"
+                    className="w-24 h-auto"
+                  />
+                </a>
+              </li>
+
+              {/* Nagad */}
+              <li>
+                <a
+                  href="https://www.nagad.com.bd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Nagad"
+                >
+                  <img
+                    src={nagad}
+                    alt="Nagad"
+                    className="w-24 h-auto"
+                  />
+                </a>
+              </li>
+
+              {/* Rocket (Dutch-Bangla Bank) */}
+              <li>
+                <a
+                  href="https://www.dutchbanglabank.com/rocket/rocket.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Rocket"
+                >
+                  <img
+                    src={rocket}
+                    alt="Rocket"
+                    className="w-24 h-auto"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         {/* Divider */}
-        <div className="my-8 border-t border-base-300/60 dark:border-base-300/20" />
+        <div className="my-8 border-t border-base-300/60" />
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-3">

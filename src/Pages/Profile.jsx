@@ -116,13 +116,7 @@ const Profile = () => {
                 <FiUser /> Profile
               </h1>
 
-              <button
-                onClick={handleLogout}
-                className="btn btn-ghost"
-                disabled={signingOut}
-              >
-                <FiLogOut /> {signingOut ? "Logging out..." : "Logout"}
-              </button>
+              
             </div>
 
             {/* Top summary */}
@@ -139,7 +133,7 @@ const Profile = () => {
                 <h2 className="text-xl font-semibold">{form.name || "Unnamed User"}</h2>
                 <p className="text-base-content/70">{currentUser?.email}</p>
                 <div className="text-sm text-base-content/60">
-                  <span className="mr-3">UID: {currentUser?.uid?.slice(0, 8)}…</span>
+                  {/* <span className="mr-3">UID: {currentUser?.uid?.slice(0, 8)}…</span> */}
                   <span>
                     Provider: {currentUser?.providerData?.[0]?.providerId || "password"}
                   </span>
@@ -150,7 +144,7 @@ const Profile = () => {
             {/* Edit form */}
             <form onSubmit={handleUpdate} className="mt-8 grid grid-cols-1 gap-4">
               <div className="form-control">
-                <label className="label"><span className="label-text font-medium">Display Name</span></label>
+                <label className="label"><span className="label-text font-medium">Display Name &nbsp;</span></label>
                 <input
                   name="name"
                   type="text"
@@ -162,7 +156,7 @@ const Profile = () => {
               </div>
 
               <div className="form-control">
-                <label className="label"><span className="label-text font-medium">Photo URL</span></label>
+                <label className="label"><span className="label-text font-medium">Photo URL &nbsp;</span></label>
                 <input
                   name="photo"
                   type="url"
@@ -175,7 +169,7 @@ const Profile = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="form-control">
-                  <label className="label"><span className="label-text font-medium">Email</span></label>
+                  <label className="label"><span className="label-text font-medium">Email:</span></label>
                   <input
                     type="email"
                     className="input input-bordered"
@@ -186,7 +180,7 @@ const Profile = () => {
                 </div>
 
                 <div className="form-control">
-                  <label className="label"><span className="label-text font-medium">User ID</span></label>
+                  <label className="label"><span className="label-text font-medium">User ID:</span></label>
                   <input
                     type="text"
                     className="input input-bordered"
@@ -206,8 +200,15 @@ const Profile = () => {
               </button>
             </form>
 
-            <div className="mt-4">
-              <Link to="/" className="link link-primary">← Back to Home</Link>
+            <div className="mt-4 flex justify-between">
+              <Link to="/" className=" link-primary btn">← Back to Home</Link>
+              <button
+                onClick={handleLogout}
+                className="btn btn-ghost"
+                disabled={signingOut}
+              >
+                <FiLogOut /> {signingOut ? "Logging out..." : "Logout"}
+              </button>
             </div>
           </div>
         </div>

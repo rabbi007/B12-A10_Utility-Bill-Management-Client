@@ -89,9 +89,7 @@ const Register = () => {
       className="mt-24 
         min-h-screen flex items-center justify-center
         px-4 py-10 relative overflow-hidden
-        bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9]
-        dark:from-[#0b1220] dark:via-[#0f1526] dark:to-[#0b1220]
-      "
+        bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9] "
     >
       {/* decorative blobs */}
       <div className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-30 bg-[#34a853]" />

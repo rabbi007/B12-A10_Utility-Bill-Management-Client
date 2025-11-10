@@ -12,6 +12,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Error from "../Pages/Error";
 import About from "../Pages/About";
 import FAQ from "../Pages/FAQ";
+import ForgetPassword from "../Pages/forgetPassword";
 
 const Router = createBrowserRouter([
   {
@@ -39,7 +40,9 @@ const Router = createBrowserRouter([
 
       {  path: "/faq", element: <FAQ /> },
 
-    ],
+      {  path: "/forgetPassword", element: <ForgetPassword /> },
+
+    ]
   },
 ]);
 
