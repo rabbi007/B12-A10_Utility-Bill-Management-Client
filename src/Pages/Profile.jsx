@@ -7,6 +7,11 @@ import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../Contexts/AuthContext/AuthContext"; // adjust if your path differs
 
 const Profile = () => {
+    // auto scroll to top of this page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { currentUser, loading, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();

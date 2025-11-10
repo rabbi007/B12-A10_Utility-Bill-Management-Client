@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { PuffLoader } from "react-spinners";
@@ -8,6 +8,11 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../Firebase/Firebase";
 
 const Login = () => {
+    // auto scroll to top of this page
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = location.state?.from || "/";
@@ -72,7 +77,7 @@ const Login = () => {
 
       <div
         className="
-          w-full max-w-md
+          w-full max-w-lg
           card shadow-xl border border-base-200/60
           rounded-3xl overflow-hidden backdrop-blur
           bg-base-100/90
@@ -116,7 +121,7 @@ const Login = () => {
                   focus:outline-none focus-visible:ring focus-visible:ring-offset-2
                   focus-visible:ring-[#1a73e8] focus-visible:ring-offset-base-100
                 "
-                placeholder="you@example.com"
+                placeholder="user@example.com"
                 required
                 aria-label="Email address"
                 autoComplete="email"
@@ -124,7 +129,7 @@ const Login = () => {
             </div>
 
             <div className="form-control">
-              <label className="label justify-between">
+              <label className="label flex justify-between">
                 <span className="label-text font-medium">Password</span>
                 <Link
                   to="/login"

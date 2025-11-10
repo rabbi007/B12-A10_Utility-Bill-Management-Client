@@ -91,7 +91,7 @@ const RecentBills = () => {
                 <div className="mt-3">
                   <Link
                     to={`/bills/${bill._id}`}
-                    className="btn w-full bg-[#1a73e8] hover:bg-[#185abc] text-white border-none"
+                    className="btn w-full bg-[#1a73e8] hover:bg-[#185abc] text-white border-none rounded-xl"
                   >
                     See Details
                   </Link>
@@ -108,8 +108,8 @@ const RecentBills = () => {
     <section className="relative">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="mb-6 md:mb-8 flex items-center justify-between gap-3">
-          <div>
+        
+          <div className="mb-6 md:mb-8 text-center">
             <h2
               className="
                 text-2xl md:text-3xl font-extrabold
@@ -123,20 +123,19 @@ const RecentBills = () => {
               The latest 6 issues reported across categories.
             </p>
           </div>
-          <Link
-            to="/bills"
-            className="btn bg-[#1a73e8] hover:bg-[#185abc] text-white border-none"
-          >
-            View All
-          </Link>
-        </div>
+        
 
         {/* Grid / Loader / Empty */}
         {grid}
       </div>
 
+      <div className="mt-10 text-center">
+        <Link to="/bills"
+          className="btn bg-[#34a853] hover:bg-[#2c8e46] text-white border-none rounded-xl"> View All Bills</Link>
+      </div>
+
       {/* Google color underline */}
-      <div className="h-1.5 w-full flex mt-20">
+      <div className="h-1.5 w-full flex mt-15">
         <span className="flex-1 bg-[#4285f4]" />
         <span className="flex-1 bg-[#34a853]" />
         <span className="flex-1 bg-[#fbbc05]" />

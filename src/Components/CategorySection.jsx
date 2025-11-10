@@ -87,7 +87,7 @@ const CategorySection = () => {
     <section className="relative py-10 md:py-14">
       {/* Section header */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="mb-6 md:mb-8">
+        <div className="mb-6 md:mb-8 text-center">
           <h2
             className="
               text-2xl md:text-3xl font-extrabold
@@ -103,7 +103,7 @@ const CategorySection = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-15">
           {CATEGORIES.map((c) => (
             <CategoryCard key={c.name} {...c} />
           ))}

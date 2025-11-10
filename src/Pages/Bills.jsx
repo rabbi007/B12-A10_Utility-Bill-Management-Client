@@ -7,6 +7,12 @@ const API_BASE = "https://b12-a10-utility-bill-management-ser.vercel.app/bills";
 const CATEGORIES = ["All", "Electricity", "Gas", "Water", "Internet"];
 
 const Bills = () => {
+
+    // auto scroll to top of this page
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
   const [bills, setBills] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();

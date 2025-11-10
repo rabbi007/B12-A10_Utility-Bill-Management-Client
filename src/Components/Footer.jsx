@@ -14,29 +14,32 @@ const Footer = () => {
 
   return (
     <footer
-      className="
-        text-base-content/90
-        bg-gradient-to-b from-[#ffffff] via-[#f3f2f1] to-[#ffffff]
-        dark:from-[#0f1526] dark:via-[#0b1220] dark:to-[#0f1526]
-        border-t border-base-300/60 dark:border-base-300/20
-      "
+      className=" bg-gray-50 text-base-content/90"
       aria-label="Website footer"
     >
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+      {/* Google color underline */}
+      <div className="h-1.5 w-full flex mt-10">
+        <span className="flex-1 bg-[#4285f4]" />
+        <span className="flex-1 bg-[#34a853]" />
+        <span className="flex-1 bg-[#fbbc05]" />
+        <span className="flex-1 bg-[#ea4335]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 ">
         {/* Top: Brand + Short Description */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           {/* Brand */}
-           <Link
+          <Link
             to="/"
             className="inline-flex items-center gap-3 group"
             aria-label="Go to Home"
           >
             <img
-                src={logo}
-                alt="Utility Bill Management logo"
-                className="h-12 w-auto sm:h-14 md:h-16 lg:h-20"
-              />
+              src={logo}
+              alt="Utility Bill Management logo"
+              className="h-12 w-auto sm:h-14 md:h-16 lg:h-20"
+            />
             <div>
               <p className="text-xl md:text-2xl font-extrabold tracking-tight">
                 Utility Bill Management
@@ -63,7 +66,7 @@ const Footer = () => {
 
         {/* Useful Links */}
         <div
-          className="
+          className="text-center
             grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6
           "
         >
@@ -214,10 +217,7 @@ const Footer = () => {
               📍 Dhaka, Bangladesh
               <br />
               ✉️{" "}
-              <a
-                href="mailto:rabbi@live.com"
-                className="link link-primary"
-              >
+              <a href="mailto:rabbi@live.com" className="link link-primary">
                 rabbi@live.com
               </a>
             </p>
@@ -228,7 +228,7 @@ const Footer = () => {
         <div className="my-8 border-t border-base-300/60 dark:border-base-300/20" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row items-center justify-end gap-3">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3">
           <div className="flex items-center gap-3 text-xs">
             <span className="inline-flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-sm bg-[#F25022]" />

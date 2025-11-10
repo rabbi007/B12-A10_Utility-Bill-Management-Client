@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Utility Bill Management Logo (Textless)</title>
+  <desc id="desc">A clean, modern, transparent SVG logo with a circular blue ring and four abstract utility icons: electricity, water, gas, and internet.</desc>
+
+  <!-- Outer circular ring (transparent background; no filled rect) -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#00A4EF" stroke-width="20" />
+
+  <!-- Subtle inner card shape to hint 'bill/document' -->
+  <rect x="150" y="140" width="212" height="232" rx="24" ry="24"
+        fill="none" stroke="#1F2937" stroke-opacity="0.22" stroke-width="10" />
+
+  <!-- Electricity: Lightning bolt (top-left) -->
+  <path d="M198 176 L242 176 L220 226 L254 226 L202 300 L214 246 L182 246 Z"
+        fill="#FFB900" />
+
+  <!-- Water: Droplet (top-right) -->
+  <path d="M312 170
+           C328 194, 344 212, 344 230
+           C344 256, 324 276, 300 276
+           C276 276, 256 256, 256 230
+           C256 212, 272 194, 288 170
+           Z"
+        fill="#00A4EF" />
+
+  <!-- Gas: Flame (bottom-left) -->
+  <path d="M214 316
+           C200 336, 190 352, 190 370
+           C190 396, 212 414, 236 414
+           C262 414, 282 396, 282 370
+           C282 350, 270 334, 256 318
+           C244 334, 232 334, 214 316 Z"
+        fill="#F25022" />
+
+  <!-- Internet: WiFi arcs (bottom-right) -->
+  <g transform="translate(300,330)" fill="none" stroke="#7FBA00" stroke-width="14" stroke-linecap="round">
+    <path d="M-4 56 A56 56 0 0 1 60 56" />
+    <path d="M12 36 A36 36 0 0 1 44 36" />
+    <path d="M28 16 A16 16 0 0 1 28 16.1" />
+    <circle cx="28" cy="56" r="6" fill="#7FBA00" stroke="none"/>
+  </g>
+</svg>

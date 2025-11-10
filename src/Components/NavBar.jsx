@@ -41,7 +41,7 @@ const NavBar = () => {
         className="
     bg-transparent
     backdrop-blur-lg
-    supports-[backdrop-filter]:bg-transparent
+    supports-backdrop-filter:bg-transparent
     border-b border-white/10
     shadow-sm
   "

@@ -7,12 +7,12 @@ import { ToastContainer } from "react-toastify";
 
 const MainLayouts = () => {
   return (
-    <div className="text-center">
+    <div className="bg-gray-50">
       <div>
         <NavBar />
       </div>
 
-      <div>
+      <div className="bg-gray-50">
         <Outlet />
       </div>
 

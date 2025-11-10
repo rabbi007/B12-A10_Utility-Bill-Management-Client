@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { FiShield, FiSmartphone, FiFilter, FiFileText, FiCreditCard, FiCheckCircle } from "react-icons/fi";
 
 
@@ -8,6 +9,12 @@ const Pill = ({ children }) => (
 );
 
 export default function About() {
+  
+  // auto scroll to top of this page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mt-24">
       
@@ -15,7 +22,7 @@ export default function About() {
       {/* Hero */}
       <section className="text-center">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-          About <span className="text-[#00A4EF]">Utility Bill Management</span>
+          About  → <span className="text-[#00A4EF]">Utility Bill Management</span>
         </h1>
         <p className="mt-3 text-base md:text-lg text-base-content/70">
           A modern MERN application to view, filter, and manage monthly utility bills — securely and beautifully.
@@ -24,7 +31,7 @@ export default function About() {
 
       {/* What we do */}
       <section className="mt-10 grid gap-6 lg:grid-cols-3">
-        <div className="rounded-2xl border border-base-500 dark:border-base-300/20 p-6 bg-white/70 dark:bg-white/5 backdrop-blur">
+        <div className="rounded-2xl border border-base-500 p-6 bg-white/70 dark:bg-white/5 backdrop-blur">
           <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#00A4EF]/10 text-[#00A4EF]">
             <FiShield size={20} />
           </div>
@@ -34,7 +41,7 @@ export default function About() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-base-500 dark:border-base-300/20 p-6 bg-white/70 dark:bg-white/5 backdrop-blur">
+        <div className="rounded-2xl border border-base-500 p-6 bg-white/70 dark:bg-white/5 backdrop-blur">
           <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#7FBA00]/10 text-[#7FBA00]">
             <FiFilter size={20} />
           </div>
@@ -44,7 +51,7 @@ export default function About() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-base-500 dark:border-base-300/20 p-6 bg-white/70 dark:bg-white/5 backdrop-blur">
+        <div className="rounded-2xl border border-base-500 p-6 bg-white/70 dark:bg-white/5 backdrop-blur">
           <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-[#FFB900]/10 text-[#FFB900]">
             <FiSmartphone size={20} />
           </div>
@@ -59,7 +66,7 @@ export default function About() {
       <section className="mt-12">
         <h2 className="text-2xl font-bold">Key Features</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-base-500 dark:border-base-300/20 p-6">
+          <div className="rounded-2xl border border-base-500 p-6">
             <div className="flex items-center gap-3 font-semibold">
               <FiCreditCard className="text-[#7FBA00]" /> Pay Current-Month Bills Only
             </div>
@@ -68,7 +75,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-base-500 dark:border-base-300/20 p-6">
+          <div className="rounded-2xl border border-base-500 p-6">
             <div className="flex items-center gap-3 font-semibold">
               <FiFileText className="text-[#F25022]" /> Download PDF Report
             </div>
@@ -77,7 +84,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-base-500 dark:border-base-300/20 p-6">
+          <div className="rounded-2xl border border-base-500 p-6">
             <div className="flex items-center gap-3 font-semibold">
               <FiCheckCircle className="text-[#00A4EF]" /> CRUD & Smart Filtering
             </div>
@@ -86,7 +93,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-base-500 dark:border-base-300/20 p-6">
+          <div className="rounded-2xl border border-base-500 p-6">
             <div className="flex items-center gap-3 font-semibold">
               <FiSmartphone className="text-[#FFB900]" /> Real-world Content
             </div>
@@ -98,7 +105,7 @@ export default function About() {
       </section>
 
       {/* Stack */}
-      <section className="mt-12">
+      <section className="mt-12 rounded-2xl border border-base-500">
         <h2 className="text-2xl font-bold ">Tech Stack</h2>
         <div className="mt-4 flex flex-wrap gap-2 text-center items-center justify-center">
           <Pill>MERN (MongoDB • Express • React • Node)</Pill>

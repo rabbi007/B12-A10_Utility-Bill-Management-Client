@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { PuffLoader } from "react-spinners";
@@ -12,6 +12,7 @@ import {
 import { auth, googleProvider } from "../Firebase/Firebase";
 
 const Register = () => {
+  useEffect (() => { window.scrollTo(0, 0); }, []);  // auto scroll to top of this page
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = location.state?.from || "/";
@@ -85,7 +86,7 @@ const Register = () => {
 
   return (
     <div
-      className="mt-24
+      className="mt-24 
         min-h-screen flex items-center justify-center
         px-4 py-10 relative overflow-hidden
         bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9]
@@ -98,7 +99,7 @@ const Register = () => {
       <div className="pointer-events-none absolute top-1/3 -left-10 w-44 h-44 rounded-full blur-2xl opacity-20 bg-[#fbbc05]" />
       <div className="pointer-events-none absolute bottom-1/3 -right-10 w-44 h-44 rounded-full blur-2xl opacity-20 bg-[#ea4335]" />
 
-      <div className="w-full max-w-md card shadow-xl border border-base-200/60 rounded-3xl overflow-hidden backdrop-blur bg-base-100/90">
+      <div className="w-full max-w-lg card shadow-xl border border-base-200/60 rounded-3xl overflow-hidden backdrop-blur bg-base-100/90">
         {/* colorful top-bar */}
         <div className="h-1.5 w-full flex">
           <span className="flex-1 bg-[#4285f4]" />
@@ -160,7 +161,7 @@ const Register = () => {
                 name="email"
                 type="email"
                 className="input input-bordered w-full"
-                placeholder="you@example.com"
+                placeholder="user@example.com"
                 required
                 aria-label="Email address"
                 autoComplete="email"
@@ -176,7 +177,7 @@ const Register = () => {
                   name="password"
                   type={showPass ? "text" : "password"}
                   className="input input-bordered w-full pr-12"
-                  placeholder="••••••"
+                  placeholder="••••••••••••"
                   required
                   minLength={6}
                   aria-label="Password"
@@ -192,7 +193,7 @@ const Register = () => {
                 </button>
               </div>
               <p className="text-xs text-base-content/60 mt-1">
-                Must include: 1 uppercase, 1 lowercase, and 6+ characters.
+                Must include: 1 uppercase, 1 lowercase and in-total at least 6 characters.
               </p>
             </div>
 
@@ -201,7 +202,7 @@ const Register = () => {
               className="btn w-full font-semibold bg-[#1a73e8] hover:bg-[#185abc] text-white border-none"
               disabled={loading}
             >
-              {loading ? <PuffLoader size={20} /> : "Create Account"}
+              {loading ? <PuffLoader size={20} /> : "Create Account (Register)"}
             </button>
           </form>
 

@@ -7,6 +7,11 @@ import { AuthContext } from "../Contexts/AuthContext/AuthContext";
 const API_BASE = "https://b12-a10-utility-bill-management-ser.vercel.app/bills";
 
 const BillDetails = () => {
+    // auto scroll to top of this page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { id } = useParams();
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
@@ -120,7 +125,7 @@ const BillDetails = () => {
   return (
     <div
       className="
-        max-w-4xl mx-auto p-6 mt-24
+        max-w-4xl mx-auto p-6 mt-28
         bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9]
         dark:from-[#0b1220] dark:via-[#0f1526] dark:to-[#0b1220]
         rounded-2xl shadow-lg relative overflow-hidden

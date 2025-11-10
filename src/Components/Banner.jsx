@@ -75,13 +75,13 @@ const Banner = () => {
                     <div className="mt-6 flex flex-wrap gap-3">
                       <a
                         href="/bills"
-                        className="btn bg-[#1a73e8] hover:bg-[#185abc] text-white border-none"
+                        className="btn bg-[#1a73e8] hover:bg-[#185abc] text-white border-none rounded-xl"
                       >
                         Explore Bills
                       </a>
                       <a
                         href="/mybills"
-                        className="btn bg-[#34a853] hover:bg-[#2c8e46] text-white border-none"
+                        className="btn bg-[#34a853] hover:bg-[#2c8e46] text-white border-none rounded-xl"
                       >
                         My Pay Bills
                       </a>

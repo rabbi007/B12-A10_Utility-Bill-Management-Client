@@ -12,6 +12,11 @@ const API_BASE =
   "https://b12-a10-utility-bill-management-ser.vercel.app/mybills";
 
 const MyBills = () => {
+    // auto scroll to top of this page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { currentUser } = useContext(AuthContext);
   const [bills, setBills] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -192,7 +197,7 @@ const MyBills = () => {
 
   return (
     <div
-      className="mt-24 max-w-6xl mx-auto px-4 py-8 
+      className="mt-28 max-w-6xl mx-auto px-4 py-8 
         bg-gradient-to-br from-[#fefefe] via-[#f8f9fa] to-[#e8f5e9]
         dark:from-[#0b1220] dark:via-[#0f1526] dark:to-[#0b1220]
         rounded-2xl shadow-lg relative
