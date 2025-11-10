@@ -57,7 +57,7 @@ const Login = () => {
 
   return (
     <div
-      className="
+      className="mt-24
         min-h-screen flex items-center justify-center
         px-4 py-10 relative overflow-hidden
         bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9]

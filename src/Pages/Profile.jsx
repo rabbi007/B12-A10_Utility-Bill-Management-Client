@@ -77,7 +77,7 @@ const Profile = () => {
 
   return (
     <div
-      className="
+      className="mt-24
         min-h-screen px-4 py-10 relative overflow-hidden
         bg-gradient-to-br from-[#e3f2fd] via-white to-[#f1f8e9]
         dark:from-[#0b1220] dark:via-[#0f1526] dark:to-[#0b1220]

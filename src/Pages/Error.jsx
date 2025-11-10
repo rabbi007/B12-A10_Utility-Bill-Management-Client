@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 const Error = () => {
   // useDocumentTitle('Error(404)');
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-purple-400 via-pink-500 to-red-500 text-white text-center">
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-purple-400 via-pink-500 to-red-500 text-white text-center ">
       <div className="max-w-md p-10 bg-white rounded-lg shadow-lg text-gray-800">
         <h1 className="text-6xl font-bold mb-4">404</h1>
         <h2 className="text-3xl mb-4">Oops! Page not found</h2>

@@ -1,4 +1,4 @@
-// src/Components/Footer.jsx
+import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
@@ -27,24 +27,22 @@ const Footer = () => {
         {/* Top: Brand + Short Description */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           {/* Brand */}
-          <Link
+           <Link
             to="/"
             className="inline-flex items-center gap-3 group"
             aria-label="Go to Home"
           >
-            {/* Microsoft-style 2x2 squares */}
-            <div className="grid grid-cols-2 gap-1.5">
-              <span className="w-5 h-5 rounded-sm bg-[#F25022]" />
-              <span className="w-5 h-5 rounded-sm bg-[#7FBA00]" />
-              <span className="w-5 h-5 rounded-sm bg-[#FFB900]" />
-              <span className="w-5 h-5 rounded-sm bg-[#00A4EF]" />
-            </div>
+            <img
+                src={logo}
+                alt="Utility Bill Management logo"
+                className="h-12 w-auto sm:h-14 md:h-16 lg:h-20"
+              />
             <div>
               <p className="text-xl md:text-2xl font-extrabold tracking-tight">
                 Utility Bill Management
               </p>
               <p className="text-xs text-base-content/60 mt-1">
-                🧠 M – E – R – N → MongoDB • Express.js • React • Node.js
+                🧠 → MongoDB • Express.js • React • Node.js
               </p>
             </div>
           </Link>

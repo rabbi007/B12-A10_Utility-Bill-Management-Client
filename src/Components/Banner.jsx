@@ -33,14 +33,7 @@ const slides = [
 
 const Banner = () => {
   return (
-    <section className="relative mt-20">
-      {/* Google color bar */}
-      <div className="h-1.5 w-full flex absolute -top-6 left-0">
-        <span className="flex-1 bg-[#4285f4]" />
-        <span className="flex-1 bg-[#34a853]" />
-        <span className="flex-1 bg-[#fbbc05]" />
-        <span className="flex-1 bg-[#ea4335]" />
-      </div>
+    <section className="relative mt-28">
 
       <div className="max-w-7xl mx-auto px-4">
         <Swiper

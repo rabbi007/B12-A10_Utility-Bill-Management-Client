@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../Contexts/AuthContext/AuthContext"; // ← adjust if your path differs
+import { AuthContext } from "../Contexts/AuthContext/AuthContext";
+import logo from "../assets/logo.svg";
 
 const NavBar = () => {
   const { currentUser, signOutUser } = useContext(AuthContext);
@@ -18,8 +19,8 @@ const NavBar = () => {
   };
 
   const baseLink =
-    "px-3 py-2 rounded-md font-medium transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2";
-  const activeClasses = "text-white bg-[#1a73e8]";
+    "px-3 py-2 rounded-md font-medium transition-all hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const activeClasses = "text-white bg-[#00A4EF] shadow-sm"; // blue active
   const idleClasses =
     "text-base-content/80 hover:text-base-content bg-transparent";
   const navItem = ({ isActive }) =>
@@ -27,36 +28,45 @@ const NavBar = () => {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      {/* Google color bar */}
-      <div className="h-1.5 w-full flex">
-        <span className="flex-1 bg-[#4285f4]" />
-        <span className="flex-1 bg-[#34a853]" />
-        <span className="flex-1 bg-[#fbbc05]" />
-        <span className="flex-1 bg-[#ea4335]" />
+      {/* color bar */}
+      <div className="h-1.5 w-full grid grid-cols-4">
+        <span className="bg-[#F25022]" />
+        <span className="bg-[#7FBA00]" />
+        <span className="bg-[#FFB900]" />
+        <span className="bg-[#00A4EF]" />
       </div>
 
       {/* App bar */}
       <nav
         className="
-          backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90
-          dark:bg-[#0b1220]/80 border-b border-base-200
-          shadow-sm
-        "
+    bg-transparent
+    backdrop-blur-lg
+    supports-[backdrop-filter]:bg-transparent
+    border-b border-white/10
+    shadow-sm
+  "
+        aria-label="Main navigation"
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-4">
-          <div className="h-16 flex items-center justify-between">
-            {/* Left: Brand */}
+          {/* h-24 total height */}
+          <div className="h-24 flex items-center justify-between">
+            {/* Left: Brand logo only */}
             <div className="flex items-center gap-3">
               <Link
                 to="/"
-                className="
-                  text-xl sm:text-2xl font-extrabold tracking-tight
-                  bg-clip-text text-transparent
-                  bg-gradient-to-r from-[#1a73e8] via-[#34a853] to-[#ea4335]
-                "
+                className="inline-flex items-center gap-3 ml-4"
                 onClick={closeMenu}
+                aria-label="Go to Home"
               >
-                Utility Bill Management
+                <img
+                  src={logo}
+                  alt="Utility Bill Management logo"
+                  className="h-12 w-auto sm:h-14 md:h-16 lg:h-20"
+                />
+                {/* Visually-hidden brand text for a11y */}
+                <p className="text-xl md:text-2xl font-extrabold tracking-tight">
+                  Utility Bill Management
+                </p>
               </Link>
             </div>
 
@@ -85,7 +95,7 @@ const NavBar = () => {
                         "https://i.ibb.co/4V9V8Gx/placeholder-avatar.png"
                       }
                       alt="User avatar"
-                      className="w-9 h-9 rounded-full border object-cover"
+                      className="w-10 h-10 rounded-full border object-cover"
                     />
                     <span className="text-sm text-base-content/70 hidden lg:inline">
                       {currentUser.displayName || currentUser.email}
@@ -94,7 +104,7 @@ const NavBar = () => {
                       onClick={handleLogout}
                       className="
                         px-3 py-2 rounded-md font-medium
-                        text-white bg-[#ea4335] hover:bg-[#d93025]
+                        text-white bg-[#F25022] hover:bg-[#d6441f]
                         focus:outline-none focus:ring-2 focus:ring-offset-2
                       "
                     >
@@ -126,7 +136,7 @@ const NavBar = () => {
               onClick={() => setOpen((s) => !s)}
             >
               <svg
-                className="h-6 w-6"
+                className="h-7 w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -182,7 +192,7 @@ const NavBar = () => {
                       "https://i.ibb.co/4V9V8Gx/placeholder-avatar.png"
                     }
                     alt="User avatar"
-                    className="w-9 h-9 rounded-full border object-cover"
+                    className="w-10 h-10 rounded-full border object-cover"
                   />
                   <div className="text-sm">
                     <div className="font-semibold">
@@ -198,7 +208,7 @@ const NavBar = () => {
                   onClick={handleLogout}
                   className="
                     w-full mt-2 px-3 py-2 rounded-md font-medium
-                    text-white bg-[#ea4335] hover:bg-[#d93025]
+                    text-white bg-[#F25022] hover:bg-[#d6441f]
                     focus:outline-none focus:ring-2 focus:ring-offset-2
                   "
                 >

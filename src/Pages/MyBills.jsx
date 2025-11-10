@@ -6,6 +6,7 @@ import { AuthContext } from "../Contexts/AuthContext/AuthContext";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import autoTable from "jspdf-autotable";
+import { Link } from "react-router";
 
 const API_BASE =
   "https://b12-a10-utility-bill-management-ser.vercel.app/mybills";
@@ -157,11 +158,32 @@ const MyBills = () => {
 
   if (!currentUser) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center text-center px-6">
-        <div className="max-w-md">
+      <div className="min-h-[60vh] flex items-center justify-center text-center mt-24">
+        <div className="max-w-full">
           <h2 className="text-2xl font-bold mb-2">Please log in</h2>
-          <p className="text-gray-600">
-            You need to be signed in to view and manage your paid bills.
+          <p className="text-gray-600 font-medium ">
+            You need to be login to view and manage your paid bills.
+          </p>
+          <p className="text-center text-gray-600 mt-4">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="link link-primary font-medium underline-offset-4"
+            >
+              Login
+            </Link>{" "}
+            here
+          </p>
+
+           <p className="text-center text-gray-600 mt-4">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="link link-primary font-medium underline-offset-4"
+            >
+              Register
+            </Link>{" "}
+            here
           </p>
         </div>
       </div>
@@ -170,8 +192,7 @@ const MyBills = () => {
 
   return (
     <div
-      className="
-        max-w-6xl mx-auto px-4 py-8 mt-24
+      className="mt-24 max-w-6xl mx-auto px-4 py-8 
         bg-gradient-to-br from-[#fefefe] via-[#f8f9fa] to-[#e8f5e9]
         dark:from-[#0b1220] dark:via-[#0f1526] dark:to-[#0b1220]
         rounded-2xl shadow-lg relative
