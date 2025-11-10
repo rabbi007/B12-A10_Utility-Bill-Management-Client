@@ -10,6 +10,8 @@ import BillDetails from "../Pages/BillDetails";
 import MyBills from "../Pages/MyBills";
 import PrivateRoutes from "./PrivateRoutes";
 import Error from "../Pages/Error";
+import About from "../Pages/About";
+import FAQ from "../Pages/FAQ";
 
 const Router = createBrowserRouter([
   {
@@ -32,6 +34,10 @@ const Router = createBrowserRouter([
       { path: "/profile", element: <Profile /> },
 
       {  path: "/mybills", element: <MyBills /> },
+
+      {  path: "/about", element: <About />},
+
+      {  path: "/faq", element: <FAQ /> },
 
     ],
   },

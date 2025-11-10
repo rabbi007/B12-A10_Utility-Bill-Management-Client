@@ -105,7 +105,7 @@ const RecentBills = () => {
   }, [bills, loading]);
 
   return (
-    <section className="relative py-10 md:py-14">
+    <section className="relative">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="mb-6 md:mb-8 flex items-center justify-between gap-3">
