@@ -158,7 +158,7 @@ const Footer = () => {
             <h3 className="text-base font-semibold">Connect With Us</h3>
 
             {/* Social Media Icons */}
-            <div className="flex flex-wrap gap-3 mt-2 justify-center">
+            <div className="flex flex-wrap gap-3 mt-8 justify-center">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -184,7 +184,7 @@ const Footer = () => {
                 className="text-[#0077B5] hover:scale-110 transition-transform"
                 aria-label="LinkedIn"
               >
-                <FaLinkedinIn size={20} />
+                <FaLinkedinIn size={24} />
               </a>
               <a
                 href="https://instagram.com"
@@ -193,7 +193,7 @@ const Footer = () => {
                 className="text-[#E4405F] hover:scale-110 transition-transform"
                 aria-label="Instagram"
               >
-                <FaInstagram size={20} />
+                <FaInstagram size={24} />
               </a>
               <a
                 href="https://github.com"
@@ -202,7 +202,7 @@ const Footer = () => {
                 className="text-[#24292E] dark:text-white hover:scale-110 transition-transform"
                 aria-label="GitHub"
               >
-                <FaGithub size={20} />
+                <FaGithub size={24} />
               </a>
               <a
                 href="https://youtube.com"
@@ -211,12 +211,12 @@ const Footer = () => {
                 className="text-[#FF0000] hover:scale-110 transition-transform"
                 aria-label="YouTube"
               >
-                <FaYoutube size={20} />
+                <FaYoutube size={24} />
               </a>
             </div>
 
             {/* Contact */}
-            <p className="text-sm text-base-content/80 mt-4">
+            <p className="text-sm text-base-content/80 mt-5 space-y-4">
               📍 Dhaka, Bangladesh
               <br />
               ✉️{" "}
@@ -276,7 +276,7 @@ const Footer = () => {
                   <img
                     src={rocket}
                     alt="Rocket"
-                    className="w-24 h-auto"
+                    className="w-20 h-auto"
                   />
                 </a>
               </li>

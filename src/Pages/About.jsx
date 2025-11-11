@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FiShield, FiSmartphone, FiFilter, FiFileText, FiCreditCard, FiCheckCircle } from "react-icons/fi";
-
+import useDocumentTitle from "../Hook/useDocumentTitle";
 
 const Pill = ({ children }) => (
   <span className="px-3 py-1 rounded-full text-xs font-medium bg-base-200 dark:bg-white/10">
@@ -9,7 +9,7 @@ const Pill = ({ children }) => (
 );
 
 export default function About() {
-  
+  useDocumentTitle('About → Utility Bill Management');
   // auto scroll to top of this page
   useEffect(() => {
     window.scrollTo(0, 0);

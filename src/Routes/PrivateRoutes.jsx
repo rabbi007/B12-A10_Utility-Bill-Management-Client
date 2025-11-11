@@ -19,7 +19,8 @@ const PrivateRoutes = ({ children }) => {
   // If the user is not authenticated, redirect to login page
   if (!currentUser) {
     toast.warning("Please log in to continue and access this content!");
-    return <Navigate state={location?.pathname} to="/login" replace />;
+    // return <Navigate state={location?.pathname} to="/login" replace />;
+    return <Navigate state={{ from: location }} to="/login" replace />;
   }
   // If the user is authenticated, render the children (protected route)
   return children;

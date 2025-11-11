@@ -5,8 +5,10 @@ import { toast } from "react-toastify";
 import { FiUser, FiLogOut, FiSave } from "react-icons/fi";
 import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../Contexts/AuthContext/AuthContext"; // adjust if your path differs
+import useDocumentTitle from "../Hook/useDocumentTitle";
 
 const Profile = () => {
+  useDocumentTitle('Profile → Utility Bill Management');
     // auto scroll to top of this page
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -122,12 +124,9 @@ const Profile = () => {
             {/* Top summary */}
             <div className="mt-4 flex flex-col sm:flex-row items-center gap-6">
               <img
-                src={
-                  form.photo ||
-                  "https://i.ibb.co/4V9V8Gx/placeholder-avatar.png"
-                }
+                src={currentUser.photoURL || "/default-avatar.png"}
                 alt="Avatar"
-                className="w-28 h-28 rounded-full object-cover border"
+                className="w-25 h-25 rounded-full object-contain border"
               />
               <div className="space-y-1 text-center sm:text-left">
                 <h2 className="text-xl font-semibold">{form.name || "Unnamed User"}</h2>

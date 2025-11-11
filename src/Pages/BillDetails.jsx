@@ -3,18 +3,22 @@ import { useParams, useNavigate } from "react-router-dom";
 import { PuffLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthContext/AuthContext";
+import useDocumentTitle from "../Hook/useDocumentTitle";
 
 const API_BASE = "https://b12-a10-utility-bill-management-ser.vercel.app/bills";
 
 const BillDetails = () => {
-    // auto scroll to top of this page
+  useDocumentTitle("Bill Details → Utility Bill Management");
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, []); // auto scroll to top of this page
 
-  const { id } = useParams();
-  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
+  const email= currentUser.email;
+  const { id } = useParams();
+  // console.log ('params-data', id, email);
+  const navigate = useNavigate();
+  
 
   const [bill, setBill] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,6 +27,7 @@ const BillDetails = () => {
     username: "",
     address: "",
     phone: "",
+    email: "",
     info: "",
   });
 
@@ -95,28 +100,30 @@ const BillDetails = () => {
       username: form.username,
       address: form.address,
       phone: form.phone,
-      email: currentUser.email,
+      email: email,
       amount: bill.amount,
       date: new Date().toISOString().slice(0, 10),
       info: form.info || "",
     };
 
     try {
+      const idToken = await currentUser.getIdToken();
       const res = await fetch(
         "https://b12-a10-utility-bill-management-ser.vercel.app/mybills",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json",
-            // Authorization: `Bearer ${idToken}`,
-           },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${idToken}`,
+          },
           body: JSON.stringify(payData),
         }
       );
-      if (!res.ok) throw new Error("Failed to pay bill");
+      if (!res.ok) throw new Error("Failed to pay bill, Recheck your given information!");
       toast.success("Bill paid successfully!");
+      console.log('post data detail', payData);
       setPayModal(false);
-      // optional: navigate to /mybills
-      // navigate("/mybills");
+      navigate("/mybills");  // auto navigate to /mybills
     } catch (err) {
       toast.error(err.message || "Payment failed");
     }
@@ -156,9 +163,16 @@ const BillDetails = () => {
           </figure>
           <div className="card-body space-y-2">
             <h2 className="card-title text-2xl">{bill.title}</h2>
-            <p><span className="font-semibold">Category:</span> {bill.category}</p>
-            <p><span className="font-semibold">Location:</span> {bill.location}</p>
-            <p><span className="font-semibold">Description:</span> {bill.description}</p>
+            <p>
+              <span className="font-semibold">Category:</span> {bill.category}
+            </p>
+            <p>
+              <span className="font-semibold">Location:</span> {bill.location}
+            </p>
+            <p>
+              <span className="font-semibold">Description:</span>{" "}
+              {bill.description}
+            </p>
             <p>
               <span className="font-semibold">Date:</span>{" "}
               {new Date(bill.date).toLocaleDateString()}
@@ -177,7 +191,9 @@ const BillDetails = () => {
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
               >
-                {isCurrentMonth ? "Pay Bill" : "Only current month bills can be paid"}
+                {isCurrentMonth
+                  ? "Pay Bill"
+                  : "Only current month bills can be paid"}
               </button>
             </div>
           </div>
@@ -208,17 +224,17 @@ const BillDetails = () => {
             {/* Form body */}
             <form onSubmit={handleSubmit} className="space-y-3 p-6">
               <div>
-                <label className="font-medium">Email</label>
+                <label className="font-medium">Email <span className="text-xs">(Read-only)</span></label>
                 <input
                   type="email"
-                  value={currentUser?.email || ""}
+                  value={email}
                   readOnly
                   className="input input-bordered w-full mt-1"
                 />
               </div>
 
               <div>
-                <label className="font-medium">Bill ID</label>
+                <label className="font-medium">Bill ID <span className="text-xs">(Read-only)</span></label>
                 <input
                   type="text"
                   value={id}
@@ -228,7 +244,7 @@ const BillDetails = () => {
               </div>
 
               <div>
-                <label className="font-medium">Amount</label>
+                <label className="font-medium">Amount <span className="text-xs">(Read-only)</span> </label>
                 <input
                   type="number"
                   value={bill.amount}
@@ -278,8 +294,11 @@ const BillDetails = () => {
                     setForm((f) => ({ ...f, phone: e.target.value }))
                   }
                   className="input input-bordered w-full mt-1"
-                  placeholder="01XXXXXXXXX"
+                  placeholder="01XXXXXXXXX" 
                 />
+                {/* Info Text */}
+          <p className="text-xs text-orange-600 italic mt-2">
+          ⚠️ Phone number must be exactly 11 digits! </p>
               </div>
 
               <div>

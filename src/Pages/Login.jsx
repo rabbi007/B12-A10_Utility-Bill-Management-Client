@@ -6,8 +6,10 @@ import { FiEye, FiEyeOff, FiLogIn } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../Firebase/Firebase";
+import useDocumentTitle from "../Hook/useDocumentTitle";
 
 const Login = () => {
+  useDocumentTitle('Login → Utility Bill Management');
   // auto scroll to top of this page
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,10 +17,11 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const redirectTo = location.state?.from || "/";
+  const redirectTo = location.state?.from || "/"; // Navigate to previous page or Home
   const [email, setEmail] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
+
 
   const handleEmailLogin = async (e) => {
     e.preventDefault();

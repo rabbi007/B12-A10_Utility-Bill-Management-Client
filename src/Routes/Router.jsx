@@ -32,9 +32,9 @@ const Router = createBrowserRouter([
 
       { path: "/register", element: <Register /> },
 
-      { path: "/profile", element: <Profile /> },
+      { path: "/profile", element: <PrivateRoutes> <Profile /> </PrivateRoutes>},
 
-      {  path: "/mybills", element: <MyBills /> },
+      {  path: "/mybills", element: <PrivateRoutes> <MyBills /> </PrivateRoutes>},
 
       {  path: "/about", element: <About />},
 

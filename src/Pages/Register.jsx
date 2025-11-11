@@ -10,12 +10,14 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth, googleProvider } from "../Firebase/Firebase";
+import useDocumentTitle from "../Hook/useDocumentTitle";
 
 const Register = () => {
+  useDocumentTitle('Register → Utility Bill Management');
   useEffect (() => { window.scrollTo(0, 0); }, []);  // auto scroll to top of this page
   const navigate = useNavigate();
   const location = useLocation();
-  const redirectTo = location.state?.from || "/";
+  const redirectTo = location.state?.from || "/"; // Navigate to previous page or Home
 
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -200,7 +202,7 @@ const Register = () => {
               className="btn w-full font-semibold bg-[#1a73e8] hover:bg-[#185abc] text-white border-none"
               disabled={loading}
             >
-              {loading ? <PuffLoader size={20} /> : "Create Account (Register)"}
+              {loading ? <PuffLoader size={20} /> : "Create Account"}
             </button>
           </form>
 

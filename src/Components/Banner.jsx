@@ -86,7 +86,7 @@ const Banner = () => {
                         href="/mybills"
                         className="btn bg-[#34a853] hover:bg-[#2c8e46] text-white border-none rounded-xl"
                       >
-                        My Pay Bills
+                        My Paid Bills
                       </a>
                     </div>
                   </div>

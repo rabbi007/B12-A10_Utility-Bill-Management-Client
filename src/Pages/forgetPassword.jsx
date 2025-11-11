@@ -3,8 +3,11 @@ import { useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import useDocumentTitle from "../Hook/useDocumentTitle";
+
 
 const ForgetPassword = () => {
+  useDocumentTitle('Forget Password → Utility Bill Management');
   const [email, setEmail] = useState("");
 
   // Initialize Firebase Authentication

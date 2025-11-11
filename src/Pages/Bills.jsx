@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { PuffLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import useDocumentTitle from "../Hook/useDocumentTitle";
+
 
 const API_BASE = "https://b12-a10-utility-bill-management-ser.vercel.app/bills";
 const CATEGORIES = ["All", "Electricity", "Gas", "Water", "Internet"];
 
 const Bills = () => {
-
+useDocumentTitle('All Bills → Utility Bill Management');
     // auto scroll to top of this page
     useEffect(() => {
       window.scrollTo(0, 0);

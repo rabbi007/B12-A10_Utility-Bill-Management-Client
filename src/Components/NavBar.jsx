@@ -22,13 +22,6 @@ const NavBar = () => {
     }
   };
 
-
-  // const handleLogout = () => {
-  //   signOutUser()
-  //     .then(() => toast.success("Successfully logged out."))
-  //     .catch(() => toast.error("Failed to log out. Try again."));
-  // };
-
   const baseLink =
     "px-3 py-2 rounded-md font-medium transition-all hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-2";
   const activeClasses = "text-white bg-[#00A4EF] shadow-sm"; // blue active
@@ -93,7 +86,7 @@ const NavBar = () => {
               {currentUser ? (
                 <>
                   <NavLink to="/mybills" className={navItem}>
-                    My Pay Bills
+                    My Paid Bills
                   </NavLink>
                   <NavLink to="/profile" className={navItem}>
                     Profile
@@ -101,12 +94,9 @@ const NavBar = () => {
 
                   <div className="flex items-center gap-3 pl-2 ml-1">
                     <img
-                      src={
-                        currentUser.photoURL ||
-                        "https://i.ibb.co/4V9V8Gx/placeholder-avatar.png"
-                      }
+                      src={currentUser.photoURL || "/default-avatar.png"}
                       alt="User avatar"
-                      className="w-10 h-10 rounded-full border object-cover"
+                      className="w-15 h-15 rounded-full border object-contain"
                     />
                     <span className="text-sm text-base-content/70 hidden lg:inline">
                       {currentUser.displayName || currentUser.email}
@@ -190,7 +180,7 @@ const NavBar = () => {
             {currentUser ? (
               <>
                 <NavLink to="/mybills" className={navItem} onClick={closeMenu}>
-                  My Pay Bills
+                  My Paid Bills
                 </NavLink>
                 <NavLink to="/profile" className={navItem} onClick={closeMenu}>
                   Profile
@@ -198,12 +188,9 @@ const NavBar = () => {
 
                 <div className="flex items-center gap-3 pt-2">
                   <img
-                    src={
-                      currentUser.photoURL ||
-                      "https://i.ibb.co/4V9V8Gx/placeholder-avatar.png"
-                    }
+                    src={currentUser.photoURL || "/default-avatar.png"}
                     alt="User avatar"
-                    className="w-10 h-10 rounded-full border object-cover"
+                    className="w-10 h-10 rounded-full border object-contain"
                   />
                   <div className="text-sm">
                     <div className="font-semibold">

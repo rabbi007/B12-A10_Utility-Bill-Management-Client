@@ -7,22 +7,28 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import autoTable from "jspdf-autotable";
 import { Link } from "react-router";
-
-const API_BASE =
-  "https://b12-a10-utility-bill-management-ser.vercel.app/mybills";
+import useDocumentTitle from "../Hook/useDocumentTitle";
 
 const MyBills = () => {
+  useDocumentTitle('My Paid Bills → Utility Bill Management');
     // auto scroll to top of this page
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const { currentUser } = useContext(AuthContext);
+  // const { id } = useParams();
   const [bills, setBills] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editModal, setEditModal] = useState(false);
   const [editData, setEditData] = useState(null);
   const [summary, setSummary] = useState({ total: 0, count: 0 });
+
+  const API_BASE =
+  "https://b12-a10-utility-bill-management-ser.vercel.app/mybills";
+
+  // const API_QUERY_BY_EMAIL = 
+  // `https://b12-a10-utility-bill-management-ser.vercel.app/myBills?email=${currentUser.email}`;
 
   // Fetch current user's bills
   const fetchMyBills = async () => {
@@ -35,7 +41,7 @@ const MyBills = () => {
     setLoading(true);
     try {
       const idToken = await currentUser.getIdToken();
-      const res = await fetch(API_BASE, {
+      const res = await fetch(`${API_BASE}?email=${currentUser.email}`, {
         headers: { Authorization: `Bearer ${idToken}` },
       });
       const data = await res.json();
@@ -48,6 +54,9 @@ const MyBills = () => {
       );
       setSummary({ total: totalAmount, count: data.length });
       setBills(data);
+
+      console.log('Fetch current users bills:',data);    // console log
+
     } catch (err) {
       console.error(err);
       toast.error("Failed to fetch bills!");
@@ -75,10 +84,10 @@ const MyBills = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      const token = await currentUser.getIdToken();
+      // const token = await currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/${id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
+        // headers: { Authorization: `Bearer ${token}` },
       });
       const result = await res.json();
       if (result.deleted) {
@@ -86,11 +95,56 @@ const MyBills = () => {
         fetchMyBills();
       } else {
         toast.error("Delete failed!");
+       
       }
     } catch (err) {
-      toast.error("Error deleting bill.", err);
+      toast.error("Error deleting bill", err);
+       console.log ("Error deleting bill",err );
     }
   };
+
+// ********************************************************
+// const handleDelete = () => {
+//     Swal.fire({
+//       title: "Are you sure?",
+//       text: "You won't be able to revert this!",
+//       icon: "warning",
+//       showCancelButton: true,
+//       confirmButtonColor: "#3085d6",
+//       cancelButtonColor: "#d33",
+//       confirmButtonText: "Yes, delete it!",
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         const token = currentUser.getIdToken();
+//         fetch(`https://b12-a10-utility-bill-management-ser.vercel.app/mybills/${id}`, {
+//           method: "DELETE",
+//           headers: {
+//             "Content-Type": "application/json",
+//              headers: { Authorization: `Bearer ${token}` },
+//           },
+//         })
+//           .then((res) => res.json())
+//           .then((data) => {
+//             console.log(data);
+//             // navigate("/mybills");
+
+//             Swal.fire({
+//               title: "Deleted!",
+//               text: "Your file has been deleted.",
+//               icon: "success",
+//             });
+//           })
+//           .catch((err) => {
+//             console.log(err);
+//           });
+//       }
+//     });
+//   };
+
+// ********************************************************
+
+
+
 
   // Open edit modal
   const openEditModal = (bill) => {
@@ -145,8 +199,8 @@ const MyBills = () => {
     autoTable(doc, {
       head,
       body,
-      styles: { fontSize: 10 },
-      headStyles: { fillColor: [240, 240, 240] },
+      styles: { fontSize: 10, textColor: [0, 0, 255], },
+      headStyles: { fillColor: [240, 240, 240], textColor: [50, 50, 50], },
       margin: { top: 14 },
     });
 
@@ -216,7 +270,7 @@ const MyBills = () => {
             from-[#1a73e8] via-[#34a853] to-[#ea4335]
           "
         >
-          My Pay Bills
+          My Paid Bills
         </h1>
 
         {/* Summary */}

@@ -1,7 +1,10 @@
 import React from 'react'; 
 import { Link } from 'react-router';
+import useDocumentTitle from "../Hook/useDocumentTitle";
+
 
 const Error = () => {
+  useDocumentTitle('Error (404) → Utility Bill Management');
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white text-center">
       <div className="relative max-w-md bg-blue-500 rounded-lg shadow-lg text-gray-800">

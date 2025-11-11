@@ -8,8 +8,10 @@ import {
   FiTrash2,
   FiEdit3,
 } from "react-icons/fi";
+import useDocumentTitle from "../Hook/useDocumentTitle";
 
 export default function FAQ() {
+  useDocumentTitle('FAQ → Utility Bill Management');
     // auto scroll to top of this page
     useEffect(() => {
       window.scrollTo(0, 0);
