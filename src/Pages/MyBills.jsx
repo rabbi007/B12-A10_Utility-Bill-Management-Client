@@ -10,14 +10,13 @@ import { Link } from "react-router";
 import useDocumentTitle from "../Hook/useDocumentTitle";
 
 const MyBills = () => {
-  useDocumentTitle('My Paid Bills → Utility Bill Management');
-    // auto scroll to top of this page
+  useDocumentTitle("My Paid Bills → Utility Bill Management");
+  // auto scroll to top of this page
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const { currentUser } = useContext(AuthContext);
-  // const { id } = useParams();
   const [bills, setBills] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editModal, setEditModal] = useState(false);
@@ -25,10 +24,7 @@ const MyBills = () => {
   const [summary, setSummary] = useState({ total: 0, count: 0 });
 
   const API_BASE =
-  "https://b12-a10-utility-bill-management-ser.vercel.app/mybills";
-
-  // const API_QUERY_BY_EMAIL = 
-  // `https://b12-a10-utility-bill-management-ser.vercel.app/myBills?email=${currentUser.email}`;
+    "https://b12-a10-utility-bill-management-ser.vercel.app/mybills";
 
   // Fetch current user's bills
   const fetchMyBills = async () => {
@@ -40,10 +36,16 @@ const MyBills = () => {
     }
     setLoading(true);
     try {
-      const idToken = await currentUser.getIdToken();
-      const res = await fetch(`${API_BASE}?email=${currentUser.email}`, {
-        headers: { Authorization: `Bearer ${idToken}` },
-      });
+      // const res = await fetch(`${API_BASE}?email=${currentUser?.email || currentUser?.uid}`,
+      const res = await fetch(
+        `${API_BASE}?email=${currentUser?.email}&uid=${currentUser?.uid}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // authorization: `Bearer ${currentUser.accessToken}`
+          },
+        }
+      );
       const data = await res.json();
 
       if (!Array.isArray(data)) throw new Error("Invalid data response");
@@ -54,9 +56,6 @@ const MyBills = () => {
       );
       setSummary({ total: totalAmount, count: data.length });
       setBills(data);
-
-      console.log('Fetch current users bills:',data);    // console log
-
     } catch (err) {
       console.error(err);
       toast.error("Failed to fetch bills!");
@@ -67,11 +66,12 @@ const MyBills = () => {
 
   useEffect(() => {
     fetchMyBills();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   // Delete a record
   const handleDelete = async (id) => {
+    console.log("handle id:", id);
+
     const confirm = await Swal.fire({
       title: "Are you sure?",
       text: "This bill record will be permanently deleted.",
@@ -84,67 +84,26 @@ const MyBills = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      // const token = await currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/${id}`, {
         method: "DELETE",
-        // headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          "Content-Type": "application/json",
+          // authorization: `Bearer ${currentUser.accessToken}`
+        },
       });
       const result = await res.json();
-      if (result.deleted) {
+      // console.log ('result', result)
+      if (result.deletedCount) {
         toast.success("Bill deleted successfully!");
         fetchMyBills();
       } else {
         toast.error("Delete failed!");
-       
       }
     } catch (err) {
       toast.error("Error deleting bill", err);
-       console.log ("Error deleting bill",err );
+      console.log("Error deleting bill", err);
     }
   };
-
-// ********************************************************
-// const handleDelete = () => {
-//     Swal.fire({
-//       title: "Are you sure?",
-//       text: "You won't be able to revert this!",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonColor: "#3085d6",
-//       cancelButtonColor: "#d33",
-//       confirmButtonText: "Yes, delete it!",
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         const token = currentUser.getIdToken();
-//         fetch(`https://b12-a10-utility-bill-management-ser.vercel.app/mybills/${id}`, {
-//           method: "DELETE",
-//           headers: {
-//             "Content-Type": "application/json",
-//              headers: { Authorization: `Bearer ${token}` },
-//           },
-//         })
-//           .then((res) => res.json())
-//           .then((data) => {
-//             console.log(data);
-//             // navigate("/mybills");
-
-//             Swal.fire({
-//               title: "Deleted!",
-//               text: "Your file has been deleted.",
-//               icon: "success",
-//             });
-//           })
-//           .catch((err) => {
-//             console.log(err);
-//           });
-//       }
-//     });
-//   };
-
-// ********************************************************
-
-
-
 
   // Open edit modal
   const openEditModal = (bill) => {
@@ -156,12 +115,11 @@ const MyBills = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const token = await currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/${editData._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          // authorization: `Bearer ${currentUser.accessToken}`,
         },
         body: JSON.stringify({
           amount: editData.amount,
@@ -171,6 +129,7 @@ const MyBills = () => {
         }),
       });
       const result = await res.json();
+      console.log("patch result", result);
       if (result.modifiedCount) {
         toast.success("Bill updated successfully!");
         setEditModal(false);
@@ -181,31 +140,120 @@ const MyBills = () => {
     }
   };
 
-  //  PDF download
-  const downloadReport = () => {
-    const doc = new jsPDF();
+  // //  PDF download
+  // const downloadReport = () => {
+  //   const doc = new jsPDF();
 
-    // Table Format
-    const head = [["Username", "Email", "Amount", "Address", "Phone", "Date"]];
-    const body = bills.map((b) => [
-      b.username,
-      b.email,
-      b.amount,
-      b.address,
-      b.phone,
-      b.date,
-    ]);
+  //   // Add page heading/title to the PDF
+  //   // const title = `${currentUser?.displayName}'s Bills Report`;
+  //   const title = "Bills Report";
+  //   // const subtitle = `Email/User ID: ${currentUser?.email || currentUser?.uid}`;
+  //   const subtitle = "Email/User ID:";
 
-    autoTable(doc, {
-      head,
-      body,
-      styles: { fontSize: 10, textColor: [0, 0, 255], },
-      headStyles: { fillColor: [240, 240, 240], textColor: [50, 50, 50], },
-      margin: { top: 14 },
-    });
+  //   // Add the title at the top of the page
+  //   doc.setFontSize(16);
+  //   doc.text(title, 14, 20); // Position (x, y)
 
-    doc.save("my-bills.pdf");
-  };
+  //   // Add subtitle
+  //   doc.setFontSize(12);
+  //   doc.text(subtitle, 14, 30); // Position (x, y)
+  //   doc.setFont("helvetica", "bold");
+
+
+  //   // Table Format
+  //   const head = [
+  //     ["Username", "Email-ID", "User-ID", "Amount", "Address", "Phone", "Date"],
+  //   ];
+  //   const body = bills.map((b) => [
+  //     b.username,
+  //     b.email,
+  //     b.userUid,
+  //     b.amount,
+  //     b.address,
+  //     b.phone,
+  //     b.date,
+  //   ]);
+
+  //   autoTable(doc, {
+  //     title,
+  //     subtitle,
+  //     head,
+  //     body,
+  //     styles: { fontSize: 10, textColor: [0, 0, 255] },
+  //     headStyles: { fillColor: [240, 240, 240], textColor: [50, 50, 50] },
+  //     margin: { top: 14 },
+  //   });
+
+  //   doc.save(`My_Bills_${currentUser?.email}.pdf`);
+  // };
+
+const downloadReport = () => {
+  const doc = new jsPDF();
+
+  // Add page heading/title to the PDF
+  const title = `${currentUser?.displayName}'s Paid Bills Report`;
+  const subtitle = `Email-ID / User-ID: ${currentUser?.email || currentUser?.uid}`;
+
+  // Set font for title and subtitle
+  doc.setFontSize(16);
+  doc.text(title, 14, 20); // Position (x, y)
+  doc.setTextColor(0, 0, 255);  // Title Text Color: Blue
+  
+  doc.setFontSize(12);
+  doc.text(subtitle, 14, 30); // Position (x, y)
+  doc.setTextColor(0, 128, 0);  // Subtitle Text Color: Dark Green
+  
+  // Add extra space before the table starts
+  doc.setFont("helvetica", "normal");
+
+  // Table Format
+  const head = [
+    ["Username", "Email-ID", "User-ID", "Amount", "Address", "Phone", "Date"],
+  ];
+  const body = bills.map((b) => [
+    b.username,
+    b.email,
+    b.userUid,
+    b.amount,
+    b.address,
+    b.phone,
+    b.date,
+  ]);
+
+  // Insert the table into the PDF document
+  autoTable(doc, {
+    head: head,
+    body: body,
+    startY: 40, // Start the table 40 units below the title
+    theme: "grid", // Optional: to use a grid theme for the table
+    styles: {
+      fontSize: 10,
+      textColor: [0, 0, 0], // Black text for better contrast
+      cellPadding: 4,
+    },
+    headStyles: {
+      fillColor: [240, 240, 240], // Light gray for headers
+      textColor: [50, 50, 50], // Darker color for header text
+      fontStyle: 'bold',
+    },
+    bodyStyles: {
+      valign: 'middle', // Vertical alignment in the cells
+    },
+
+    alternateRowStyles: {
+      fillColor: [255, 235, 238], // Light Red background for alternate rows (optional)
+       },
+       
+    margin: { top: 14, bottom: 20, left: 10, right: 10 }, // Margin adjustments for better spacing
+  });
+
+  // Save the generated PDF file
+  doc.save(`My_Bills_${currentUser?.displayName}.pdf`);
+};
+
+
+
+
 
   if (loading) {
     return (
@@ -234,7 +282,7 @@ const MyBills = () => {
             here
           </p>
 
-           <p className="text-center text-gray-600 mt-4">
+          <p className="text-center text-gray-600 mt-4">
             Don't have an account?{" "}
             <Link
               to="/register"
@@ -300,7 +348,8 @@ const MyBills = () => {
                 <tr>
                   <th>#</th>
                   <th>Username</th>
-                  <th>Email</th>
+                  <th>Email-ID</th>
+                  <th>User-ID</th>
                   <th>Amount</th>
                   <th>Address</th>
                   <th>Phone</th>
@@ -317,6 +366,7 @@ const MyBills = () => {
                     <td>{i + 1}</td>
                     <td>{b.username}</td>
                     <td>{b.email}</td>
+                    <td>{b.userUid}</td>
                     <td>৳{b.amount}</td>
                     <td>{b.address}</td>
                     <td>{b.phone}</td>
@@ -388,7 +438,7 @@ const MyBills = () => {
               <div>
                 <label className="font-medium">Phone</label>
                 <input
-                  type="tel"
+                  type="number"
                   value={editData.phone}
                   onChange={(e) =>
                     setEditData({ ...editData, phone: e.target.value })

@@ -134,7 +134,7 @@ const Profile = () => {
                 <div className="text-sm text-base-content/60">
                   {/* <span className="mr-3">UID: {currentUser?.uid?.slice(0, 8)}…</span> */}
                   <span>
-                    Provider: {currentUser?.providerData?.[0]?.providerId || "password"}
+                    Provider: {currentUser?.providerData?.[0]?.providerId || "Firebase User"}
                   </span>
                 </div>
               </div>
@@ -172,7 +172,8 @@ const Profile = () => {
                   <input
                     type="email"
                     className="input input-bordered"
-                    value={currentUser?.email || ""}
+                    value={currentUser?.email || currentUser?.providerData?.[0]?.providerId}
+                    // value={currentUser?.email || currentUser?.uid}
                     disabled
                     readOnly
                   />

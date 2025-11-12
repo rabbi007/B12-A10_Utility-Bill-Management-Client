@@ -32,16 +32,27 @@ const AuthProvider = ({ children }) => {
     }
 
 
-  const signOutUser = () => {
-    setLoading(true);
-    return signOut(auth);
+  // const signOutUser = () => {
+  //   setLoading(true);
+  //   return signOut(auth);
+  // };
+
+  const signOutUser = async () => {
+    try {
+      await signOut(auth); // Firebase logout
+      setLoading(true);
+      setCurrentUser(null); // Clear the currentUser state
+    } catch (err) {
+      console.error("Sign out error:", err);
+    }
   };
 
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("Current Logged-in User-Email:", user?.email || "No User!");
-      console.log("Current Logged-in User-Details:", user || "No User!");
+      console.log("Current Logged-in User-Email:", user?.email || "No User Email!");      
+      console.log("Current Logged-in User-ProviderId:", user.providerData?.[0]?.providerId || "No Provider!");
+      // console.log("Current Logged-in User-Details:", user || "No User Data!");
       setCurrentUser(user);
       setLoading(false);
     });

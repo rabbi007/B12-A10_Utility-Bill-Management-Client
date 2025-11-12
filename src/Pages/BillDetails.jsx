@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PuffLoader } from "react-spinners";
@@ -14,11 +15,10 @@ const BillDetails = () => {
   }, []); // auto scroll to top of this page
 
   const { currentUser } = useContext(AuthContext);
-  const email= currentUser.email;
+  // const email = currentUser.email;
   const { id } = useParams();
   // console.log ('params-data', id, email);
   const navigate = useNavigate();
-  
 
   const [bill, setBill] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,13 @@ const BillDetails = () => {
   useEffect(() => {
     const fetchBill = async () => {
       try {
-        const res = await fetch(`${API_BASE}/${id}`);
+        const res = await fetch(`${API_BASE}/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // authorization: `Bearer ${currentUser.accessToken}`,
+          },
+        });
         if (!res.ok) throw new Error("Failed to fetch bill details");
         const data = await res.json();
         setBill(data);
@@ -100,30 +106,32 @@ const BillDetails = () => {
       username: form.username,
       address: form.address,
       phone: form.phone,
-      email: email,
+      email: `${currentUser?.email}`,
+      uid: `${currentUser?.uid}`,
       amount: bill.amount,
       date: new Date().toISOString().slice(0, 10),
       info: form.info || "",
     };
 
     try {
-      const idToken = await currentUser.getIdToken();
+      // const idToken = await currentUser.getIdToken();
       const res = await fetch(
         "https://b12-a10-utility-bill-management-ser.vercel.app/mybills",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${idToken}`,
+            // authorization: `Bearer ${currentUser.accessToken}`,
           },
           body: JSON.stringify(payData),
         }
       );
-      if (!res.ok) throw new Error("Failed to pay bill, Recheck your given information!");
+      if (!res.ok)
+        throw new Error("Failed to pay bill, Recheck your given information!");
       toast.success("Bill paid successfully!");
-      console.log('post data detail', payData);
+      console.log("post data detail", payData);
       setPayModal(false);
-      navigate("/mybills");  // auto navigate to /mybills
+      navigate("/mybills"); // auto navigate to /mybills
     } catch (err) {
       toast.error(err.message || "Payment failed");
     }
@@ -224,17 +232,29 @@ const BillDetails = () => {
             {/* Form body */}
             <form onSubmit={handleSubmit} className="space-y-3 p-6">
               <div>
-                <label className="font-medium">Email <span className="text-xs">(Read-only)</span></label>
+                <label className="font-medium">
+                  Email-ID / User-ID:<span className="text-xs">&nbsp; (Read-only)</span>
+                </label>
+                
                 <input
                   type="email"
-                  value={email}
+                  // value={email}
+                  // value={currentUser?.email || currentUser?.providerData?.[0]?.providerId}
+                  value={currentUser?.email || currentUser?.uid}
                   readOnly
+                  placeholder="Email ID from your Email Provider"
                   className="input input-bordered w-full mt-1"
                 />
+                {/* Info Text */}
+                <p className="text-xs text-orange-600 mt-2">
+                  Note: If Email-ID not found, User-ID will be used for operation! 
+                </p>
               </div>
 
               <div>
-                <label className="font-medium">Bill ID <span className="text-xs">(Read-only)</span></label>
+                <label className="font-medium">
+                  Bill ID <span className="text-xs">(Read-only)</span>
+                </label>
                 <input
                   type="text"
                   value={id}
@@ -244,7 +264,9 @@ const BillDetails = () => {
               </div>
 
               <div>
-                <label className="font-medium">Amount <span className="text-xs">(Read-only)</span> </label>
+                <label className="font-medium">
+                  Amount <span className="text-xs">(Read-only)</span>{" "}
+                </label>
                 <input
                   type="number"
                   value={bill.amount}
@@ -294,11 +316,12 @@ const BillDetails = () => {
                     setForm((f) => ({ ...f, phone: e.target.value }))
                   }
                   className="input input-bordered w-full mt-1"
-                  placeholder="01XXXXXXXXX" 
+                  placeholder="01XXXXXXXXX"
                 />
                 {/* Info Text */}
-          <p className="text-xs text-orange-600 italic mt-2">
-          ⚠️ Phone number must be exactly 11 digits! </p>
+                <p className="text-xs text-red-600 mt-2">
+                  Warning: Phone number must have exactly 11 digits.
+                </p>
               </div>
 
               <div>

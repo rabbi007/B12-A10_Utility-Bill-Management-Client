@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext/AuthContext";
 import logo from "../assets/logo.svg";
 import { toast } from "react-toastify";
 
 const NavBar = () => {
   const { currentUser, signOutUser } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const closeMenu = () => setOpen(false);
@@ -16,6 +16,7 @@ const NavBar = () => {
       await signOutUser();
       closeMenu();
       toast.success("Successfully logged out.")
+      navigate("/", { replace: true });
     } catch (err) {
       console.error("Logout failed:", err);
       toast.error("Failed to log out. Try again.")
