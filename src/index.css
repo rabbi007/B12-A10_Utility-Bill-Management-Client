@@ -4,16 +4,22 @@
 
 
 @import "tailwindcss";
-/* @plugin "daisyui"; */
+@plugin "daisyui";
 
-
-@plugin "daisyui" {
+/* @plugin "daisyui" {
   themes: light --default;
-}
+} */
 
 body {
   font-family: "Poppins", sans-serif;
   font-optical-sizing: auto;
 }
 
-
+/* daisyUI Themes */
+/* @import "daisyui"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@plugin "daisyui" {
+  themes: all;
+}

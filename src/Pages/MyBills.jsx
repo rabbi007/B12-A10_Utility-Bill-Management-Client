@@ -140,52 +140,6 @@ const MyBills = () => {
     }
   };
 
-  // //  PDF download
-  // const downloadReport = () => {
-  //   const doc = new jsPDF();
-
-  //   // Add page heading/title to the PDF
-  //   // const title = `${currentUser?.displayName}'s Bills Report`;
-  //   const title = "Bills Report";
-  //   // const subtitle = `Email/User ID: ${currentUser?.email || currentUser?.uid}`;
-  //   const subtitle = "Email/User ID:";
-
-  //   // Add the title at the top of the page
-  //   doc.setFontSize(16);
-  //   doc.text(title, 14, 20); // Position (x, y)
-
-  //   // Add subtitle
-  //   doc.setFontSize(12);
-  //   doc.text(subtitle, 14, 30); // Position (x, y)
-  //   doc.setFont("helvetica", "bold");
-
-
-  //   // Table Format
-  //   const head = [
-  //     ["Username", "Email-ID", "User-ID", "Amount", "Address", "Phone", "Date"],
-  //   ];
-  //   const body = bills.map((b) => [
-  //     b.username,
-  //     b.email,
-  //     b.userUid,
-  //     b.amount,
-  //     b.address,
-  //     b.phone,
-  //     b.date,
-  //   ]);
-
-  //   autoTable(doc, {
-  //     title,
-  //     subtitle,
-  //     head,
-  //     body,
-  //     styles: { fontSize: 10, textColor: [0, 0, 255] },
-  //     headStyles: { fillColor: [240, 240, 240], textColor: [50, 50, 50] },
-  //     margin: { top: 14 },
-  //   });
-
-  //   doc.save(`My_Bills_${currentUser?.email}.pdf`);
-  // };
 
 const downloadReport = () => {
   const doc = new jsPDF();
@@ -243,16 +197,13 @@ const downloadReport = () => {
     alternateRowStyles: {
       fillColor: [255, 235, 238], // Light Red background for alternate rows (optional)
        },
-       
+
     margin: { top: 14, bottom: 20, left: 10, right: 10 }, // Margin adjustments for better spacing
   });
 
   // Save the generated PDF file
   doc.save(`My_Bills_${currentUser?.displayName}.pdf`);
 };
-
-
-
 
 
   if (loading) {

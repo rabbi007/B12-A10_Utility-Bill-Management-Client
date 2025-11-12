@@ -9,11 +9,11 @@ const API_BASE = "https://b12-a10-utility-bill-management-ser.vercel.app/bills";
 const CATEGORIES = ["All", "Electricity", "Gas", "Water", "Internet"];
 
 const Bills = () => {
-useDocumentTitle('All Bills → Utility Bill Management');
     // auto scroll to top of this page
     useEffect(() => {
       window.scrollTo(0, 0);
     }, []);
+  useDocumentTitle('All Bills → Utility Bill Management');
   
   const [bills, setBills] = useState([]);
   const [loading, setLoading] = useState(true);

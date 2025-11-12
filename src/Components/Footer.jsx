@@ -88,7 +88,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/mybills" className="link link-hover">
-                  My Pay Bills
+                  My Paid Bills
                 </Link>
               </li>
               <li>

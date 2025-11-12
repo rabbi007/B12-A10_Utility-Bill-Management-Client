@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log("Current Logged-in User-Email:", user?.email || "No User Email!");      
       console.log("Current Logged-in User-ProviderId:", user.providerData?.[0]?.providerId || "No Provider!");
-      // console.log("Current Logged-in User-Details:", user || "No User Data!");
+      console.log("Current Logged-in User-Details:", user || "No User Data!");
       setCurrentUser(user);
       setLoading(false);
     });

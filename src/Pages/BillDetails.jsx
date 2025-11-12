@@ -9,11 +9,12 @@ import useDocumentTitle from "../Hook/useDocumentTitle";
 const API_BASE = "https://b12-a10-utility-bill-management-ser.vercel.app/bills";
 
 const BillDetails = () => {
-  useDocumentTitle("Bill Details → Utility Bill Management");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []); // auto scroll to top of this page
 
+  useDocumentTitle("Bill Details → Utility Bill Management");
+  
   const { currentUser } = useContext(AuthContext);
   // const email = currentUser.email;
   const { id } = useParams();
@@ -233,9 +234,10 @@ const BillDetails = () => {
             <form onSubmit={handleSubmit} className="space-y-3 p-6">
               <div>
                 <label className="font-medium">
-                  Email-ID / User-ID:<span className="text-xs">&nbsp; (Read-only)</span>
+                  Email-ID / User-ID:
+                  <span className="text-xs">&nbsp; (Read-only)</span>
                 </label>
-                
+
                 <input
                   type="email"
                   // value={email}
@@ -247,7 +249,8 @@ const BillDetails = () => {
                 />
                 {/* Info Text */}
                 <p className="text-xs text-orange-600 mt-2">
-                  Note: If Email-ID not found, User-ID will be used for operation! 
+                  Note: If Email-ID not found, User-ID will be used for
+                  operation!
                 </p>
               </div>
 

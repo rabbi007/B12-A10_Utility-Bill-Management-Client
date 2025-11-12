@@ -3,6 +3,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext/AuthContext";
 import logo from "../assets/logo.svg";
 import { toast } from "react-toastify";
+import RefreshPage from "./RefreshPage";
+import ThemeToggle from "./ThemeToggle";
 
 const NavBar = () => {
   const { currentUser, signOutUser } = useContext(AuthContext);
@@ -15,11 +17,11 @@ const NavBar = () => {
     try {
       await signOutUser();
       closeMenu();
-      toast.success("Successfully logged out.")
+      toast.success("Successfully logged out.");
       navigate("/", { replace: true });
     } catch (err) {
       console.error("Logout failed:", err);
-      toast.error("Failed to log out. Try again.")
+      toast.error("Failed to log out. Try again.");
     }
   };
 
@@ -73,6 +75,13 @@ const NavBar = () => {
                   Utility Bill Management
                 </p>
               </Link>
+            </div>
+
+            <div className="flex justify-center items-center text-center gap-5 md:mr-5">
+              {/* Refresh Button */}
+              <RefreshPage />
+              {/* DaisyUI Themes */}
+              <ThemeToggle />
             </div>
 
             {/* Right: Desktop menu */}
@@ -170,7 +179,7 @@ const NavBar = () => {
             ${open ? "max-h-96" : "max-h-0"}
           `}
         >
-          <div className="px-3 pb-3 space-y-2 bg-white/95 dark:bg-[#0b1220]/90">
+          <div className="pt-5 px-3 pb-3 space-y-2 bg-white/95 dark:bg-[#0b1220]/90">
             <NavLink to="/" className={navItem} end onClick={closeMenu}>
               Home
             </NavLink>
@@ -187,14 +196,14 @@ const NavBar = () => {
                   Profile
                 </NavLink>
 
-                <div className="flex items-center gap-3 pt-2">
-                  <img
+                <div className="flex justify-center items-center text-center gap-3 pt-2">
+                  {/* <img
                     src={currentUser.photoURL || "/default-avatar.png"}
                     alt="User avatar"
                     className="w-10 h-10 rounded-full border object-contain"
-                  />
-                  <div className="text-sm">
-                    <div className="font-semibold">
+                  /> */}
+                  <div className="text-sm ">
+                    <div className="font-semibold ">
                       {currentUser.displayName || "User"}
                     </div>
                     <div className="text-base-content/60">
@@ -211,7 +220,7 @@ const NavBar = () => {
                     focus:outline-none focus:ring-2 focus:ring-offset-2
                   "
                 >
-                  Logout
+                  Logout 
                 </button>
               </>
             ) : (
