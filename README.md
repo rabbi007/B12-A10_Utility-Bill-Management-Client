@@ -2,7 +2,7 @@
 
 [**Utility Bill Management System**]
 
-## Live Site URL: 
+## Live Site URL: https://ubms-rabbi.netlify.app/
 
 ## Github Repo link (Server-side):
 https://github.com/rabbi007/B12-A10_Utility-Bill-Management-Server.git 
