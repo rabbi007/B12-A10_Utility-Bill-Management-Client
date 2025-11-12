@@ -78,10 +78,15 @@ const NavBar = () => {
             </div>
 
             <div className="flex justify-center items-center text-center gap-5 md:mr-5">
-              {/* Refresh Button */}
-              <RefreshPage />
-              {/* DaisyUI Themes */}
-              <ThemeToggle />
+              <div className="hidden md:block">
+                {/* Refresh Button */}
+                <RefreshPage />
+              </div>
+
+              <div className="hidden md:block">
+                {/* DaisyUI Themes */}
+                <ThemeToggle />
+              </div>
             </div>
 
             {/* Right: Desktop menu */}
@@ -220,7 +225,7 @@ const NavBar = () => {
                     focus:outline-none focus:ring-2 focus:ring-offset-2
                   "
                 >
-                  Logout 
+                  Logout
                 </button>
               </>
             ) : (
