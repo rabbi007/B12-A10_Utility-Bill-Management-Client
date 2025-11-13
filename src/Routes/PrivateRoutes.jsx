@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Contexts/AuthContext/AuthContext";
 import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { PuffLoader } from "react-spinners"; // Import the spinner
+import { PuffLoader } from "react-spinners"; 
 
 const PrivateRoutes = ({ children }) => {
   // auto scroll to top of this page
@@ -13,18 +13,17 @@ const PrivateRoutes = ({ children }) => {
   const { currentUser, loading } = useContext(AuthContext);
   const location = useLocation();
   
-  // State to handle the loading visibility
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (loading) {
       const timer = setTimeout(() => {
-        setIsLoading(false); // Stop the loading spinner after 3 seconds
-      }, 3000); // Set 3 seconds delay for the loading spinner
+        setIsLoading(false); 
+      }, 3000); // 
 
-      return () => clearTimeout(timer); // Clean up the timer when the component unmounts
+      return () => clearTimeout(timer); 
     } else {
-      setIsLoading(false); // Once loading is false, stop the loader immediately
+      setIsLoading(false); 
     }
   }, [loading]);
 
@@ -32,7 +31,7 @@ const PrivateRoutes = ({ children }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <PuffLoader size={60} color="#00A4EF" /> {/* Customize size/color */}
+        <PuffLoader size={60} color="#00A4EF" /> 
         <p className="mt-4 text-xl text-gray-700">Checking Authentication...</p>
       </div>
     );

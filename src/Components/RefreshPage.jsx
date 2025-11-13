@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { PuffLoader } from 'react-spinners';  // For the animated spinner
-import { FaSyncAlt } from 'react-icons/fa';    // Using a refresh icon from react-icons
+import { PuffLoader } from 'react-spinners';  
+import { FaSyncAlt } from 'react-icons/fa';    
 
 const RefreshPage = () => {
   const [loading, setLoading] = useState(false);
@@ -9,16 +9,16 @@ const RefreshPage = () => {
     setLoading(true);  // Show loading spinner before refresh
     setTimeout(() => {
       window.location.reload(); 
-      window.scrollTo(0, 0); // Refresh the page after a brief delay
-    }, 1000); // Delay for animation (1 second)
+      window.scrollTo(0, 0); 
+    }, 500); // 
   };
 
   return (
     <div className="flex justify-center items-center">
       <button
         onClick={refreshPage}
-        className="px-4 py-2 bg-green-500 text-white rounded flex items-center justify-center hover:bg-green-400 transition-all"
-      >
+        className="p-3 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-400 transition-all"
+      title="Click to Reload" >
         {loading ? (
           <PuffLoader size={20} color={"#fff"} />
         ) : (

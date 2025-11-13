@@ -13,6 +13,7 @@ import Error from "../Pages/Error";
 import About from "../Pages/About";
 import FAQ from "../Pages/FAQ";
 import ForgetPassword from "../Pages/forgetPassword";
+import AddBill from "../Pages/AddBill";
 
 const Router = createBrowserRouter([
   {
@@ -24,6 +25,8 @@ const Router = createBrowserRouter([
 
       { path: "/home", element: <Home /> },
 
+      { path: "/addbill", element: <PrivateRoutes> <AddBill/> </PrivateRoutes> },
+
       { path: "/bills", element: <Bills /> },
 
       { path: "/bills/:id", element: <PrivateRoutes> <BillDetails /> </PrivateRoutes> },
@@ -34,7 +37,7 @@ const Router = createBrowserRouter([
 
       { path: "/profile", element: <PrivateRoutes> <Profile /> </PrivateRoutes>},
 
-      {  path: "/mybills", element: (<PrivateRoutes> <MyBills /> </PrivateRoutes>)},
+      {  path: "/mybills", element: <PrivateRoutes> <MyBills /> </PrivateRoutes>},
 
       {  path: "/about", element: <About />},
 

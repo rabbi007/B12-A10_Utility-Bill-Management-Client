@@ -103,19 +103,30 @@ const NavBar = () => {
                   <NavLink to="/mybills" className={navItem}>
                     My Paid Bills
                   </NavLink>
+                  <NavLink to="/addbill" className={navItem}>
+                    Add Bill
+                  </NavLink>
+
                   <NavLink to="/profile" className={navItem}>
                     Profile
                   </NavLink>
 
                   <div className="flex items-center gap-3 pl-2 ml-1">
-                    <img
-                      src={currentUser.photoURL || "/default-avatar.png"}
-                      alt="User avatar"
-                      className="w-15 h-15 rounded-full border object-contain"
-                    />
-                    <span className="text-sm text-base-content/70 hidden lg:inline">
+                    <a
+                      href="https://github.com/rabbi007"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={currentUser.photoURL || "/default-avatar.png"}
+                        alt="User avatar"
+                        className="w-15 h-15 rounded-full border object-contain"
+                        title="Avatar"
+                      />
+                    </a>
+                    {/* <span className="text-sm text-base-content/70 hidden lg:inline">
                       {currentUser.displayName || currentUser.email}
-                    </span>
+                    </span> */}
                     <button
                       onClick={handleLogout}
                       className="
@@ -196,6 +207,9 @@ const NavBar = () => {
               <>
                 <NavLink to="/mybills" className={navItem} onClick={closeMenu}>
                   My Paid Bills
+                </NavLink>
+                <NavLink to="/addbill" className={navItem} onClick={closeMenu}>
+                  Add Bill
                 </NavLink>
                 <NavLink to="/profile" className={navItem} onClick={closeMenu}>
                   Profile
