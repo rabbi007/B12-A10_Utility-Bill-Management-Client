@@ -38,7 +38,7 @@ The **Utility Bill Management System** is a web application that helps users man
 - **Swiper**: For creating image sliders/carousels.
 - **DaisyUI**: Tailwind CSS plugin for ready-made components.
 
-- Run the Project Locally
+### Run the Project Locally
 
 To run this project on your local machine, follow these steps:
 
@@ -87,7 +87,7 @@ The client-side application should now be accessible at http://localhost:5173/,
 
 and the server-side should be running on http://localhost:3000/
 
-Notes
+### Notes
 
 Ensure you have Node.js and npm installed on your machine.
 
